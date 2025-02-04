@@ -3,3 +3,84 @@
     float: left;
     margin-left: 20px;
 }
+
+.session-header {
+    position: relative;
+    float: left;
+    margin-left: 20px;
+}
+
+.new-button {
+    position: relative;
+    border: 2px solid rgb(3, 32, 29);
+    border-radius: 0.2rem;
+    color: rgb(3, 32, 29);
+    text-align: center;
+    width: 80px;
+    line-height: 20px;
+    background: white;
+    text-decoration: none;
+    float: left;
+    margin-left: 20px;
+    top: 30px;
+}
+
+.new-button:hover {
+    background-color: rgb(120, 224, 210);
+    -webkit-transition: 0.0s;
+    transition: 0s;
+    color:  rgb(3, 32, 29);
+}
+  
+.new-button:active {
+    background-color: rgb(120, 224, 210);
+}
+
+.input-block {
+    position: relative;
+}
+
+.session-input {
+    position: relative;
+    left: 10px;
+    width: 220px;
+    bottom: 10px;
+}
+
+.delete-button {
+    border: 2px solid rgb(3, 32, 29);
+    border-radius: 0.2rem;
+    color: rgb(3, 32, 29);
+    text-align: center;
+    position: relative;
+    width: 120px;
+    line-height: 20px;
+    left: 800px;
+    background: white;
+    text-decoration: none;
+}
+
+.delete-button:hover {
+    background-color: rgb(120, 224, 210);
+    -webkit-transition: 0.0s;
+    transition: 0s;
+    color:  rgb(3, 32, 29);
+}
+  
+.delete-button:active {
+    background-color: rgb(120, 224, 210);
+}
+
+.tracker-block {
+    position: relative;
+    top: 120px;
+}
+
+.list-item {
+    display: table-row;
+    position: relative;
+    text-align: left;
+    width: 100px;
+    height: 100px;
+    right: 220px;
+}
