@@ -34,9 +34,7 @@ function Tracker() {
 
   return (
     <>
-      <div id="timer" className="timer">
-        {time}
-      </div>
+      <div className="timer">{time}</div>
       <button onClick={() => hanldeStartOnClick()}>
         <span>Start</span>
       </button>

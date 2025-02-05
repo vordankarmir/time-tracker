@@ -3,8 +3,8 @@ import "./style.css";
 import Tracker from "../tracker/Tracker";
 
 interface Session {
+  id: number;
   name: string;
-  trackerIsOn: boolean;
 }
 
 function Session() {
@@ -15,6 +15,7 @@ function Session() {
   const handleNewOnClick = () => {
     setNewSession(true);
     const newSession = {
+      id: sessions.length + 1,
       name: "",
       trackerIsOn: false,
     };
@@ -26,7 +27,6 @@ function Session() {
       setNewSession(false);
       const currentSession = sessions[sessions.length - 1];
       currentSession.name = sessionName;
-      currentSession.trackerIsOn = true;
       setSessions(sessions);
     }
   };
@@ -36,10 +36,6 @@ function Session() {
   };
 
   const handleDeleteSession = (index: number) => {
-    const currentSession = sessions[index];
-    if (currentSession != null) {
-      currentSession.trackerIsOn = false;
-    }
     setSessions(sessions.filter((s, i) => i !== index));
     setNewSession(false);
   };
@@ -67,20 +63,18 @@ function Session() {
         {sessions
           .filter((session) => session.name)
           .map((session, index) => (
-            <li key={index} className="list-item">
-              {session.name}
+            <div key={session.id} className="row">
+              <li key={session.id} className="list-item">
+                {session.name}
+                <Tracker />
+              </li>
               <button
                 className="delete-button"
                 onClick={() => handleDeleteSession(index)}
               >
                 Delete session
               </button>
-              {session.trackerIsOn ? (
-                <>
-                  <Tracker />
-                </>
-              ) : null}
-            </li>
+            </div>
           ))}
       </ul>
     </>
