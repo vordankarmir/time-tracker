@@ -1,8 +1,15 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-// import { setInterval, clearInterval } from "worker-timers";
+import * as ConfigStore from "../../../wailsjs/go/main/ConfigStore";
+import { loadHistory } from "../../utils/Config";
 
-function Tracker() {
+interface Props {
+  props: {
+    name: string;
+  };
+}
+
+function Tracker({ props }: Props) {
   const [time, setTime] = useState("00:00:00");
   const [timerState, setTimerState] = useState("stopped");
   const [intervalId, setIntervalId] = useState(0);
@@ -21,9 +28,16 @@ function Tracker() {
     setTimerState("running");
   }
 
-  function handleStopOnClick() {
+  async function handleStopOnClick() {
     clearInterval(intervalId);
     setTimerState("stopped");
+    const historyData = await loadHistory();
+    const historyToSave = {
+      timer: time,
+      name: props.name,
+    };
+    const allHistory = [...JSON.parse(historyData), historyToSave];
+    await ConfigStore.Set("history.json", JSON.stringify(allHistory));
     setTime(moment().startOf("day").format("H:mm:ss"));
   }
 

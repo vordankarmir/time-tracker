@@ -66,7 +66,7 @@ function Session() {
             <div key={session.id} className="row">
               <li key={session.id} className="list-item">
                 {session.name}
-                <Tracker />
+                <Tracker props={{ name: sessionName }} />
               </li>
               <button
                 className="delete-button"

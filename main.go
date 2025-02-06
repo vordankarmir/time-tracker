@@ -18,9 +18,15 @@ func main() {
 	// Create an instance of the app structure
 	app := NewApp()
 
+	configStore, err := NewConfigStore("Time tracker")
+	if err != nil {
+		fmt.Printf("could not initialize the config store: %v\n", err)
+		return
+	}
+
 	// Create application with options
-	err := wails.Run(&options.App{
-		Title:  "time-tracker",
+	err = wails.Run(&options.App{
+		Title:  "Time tracker",
 		Width:  500,
 		Height: 250,
 		AssetServer: &assetserver.Options{
@@ -30,6 +36,7 @@ func main() {
 		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
+			configStore,
 		},
 	})
 
