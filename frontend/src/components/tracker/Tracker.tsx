@@ -1,6 +1,5 @@
-import moment from "moment";
+import moment, { now } from "moment";
 import { useState, useEffect } from "react";
-import * as ConfigStore from "../../../wailsjs/go/main/ConfigStore";
 import { saveHistory } from "../../utils/Config";
 
 interface Props {
@@ -34,6 +33,7 @@ function Tracker({ props }: Props) {
     const historyToSave = {
       timer: time,
       name: props.name,
+      date: moment(now()).format("DD/MM/YYYY"),
     };
     await saveHistory(historyToSave);
     setTime(moment().startOf("day").format("H:mm:ss"));

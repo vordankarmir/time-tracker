@@ -14,6 +14,7 @@ function History({ historyPromise }: any) {
             <tr>
               <th className="history-column">Name</th>
               <th className="history-column">Timer</th>
+              <th className="history-column">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -22,6 +23,7 @@ function History({ historyPromise }: any) {
                 <tr key={index} className="table-row">
                   <td className="table-data">{d.name}</td>
                   <td className="table-data">{d.timer}</td>
+                  <td className="table-data">{d.date}</td>
                 </tr>
               );
             })}
