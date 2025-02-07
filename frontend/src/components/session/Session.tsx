@@ -14,8 +14,9 @@ function Session() {
 
   const handleNewOnClick = () => {
     setNewSession(true);
+    const id = (sessions[sessions.length - 1]?.id ?? 0) + 1;
     const newSession = {
-      id: sessions.length + 1,
+      id,
       name: "",
       trackerIsOn: false,
     };
@@ -64,7 +65,7 @@ function Session() {
               {sessions
                 .filter((session) => session.name)
                 .map((session, index) => (
-                  <tr key={index} className="timer-table-row">
+                  <tr key={session.id} className="timer-table-row">
                     <td className="timer-table-data">{session.name}</td>
                     <td className="timer-table-data">
                       <Tracker props={{ name: sessionName }} />
