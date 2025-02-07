@@ -58,25 +58,31 @@ function Session() {
             ></input>
           ) : null}
         </div>
+        <div className="timers-table-container">
+          <table className="timers-table">
+            <tbody>
+              {sessions
+                .filter((session) => session.name)
+                .map((session, index) => (
+                  <tr key={index} className="timer-table-row">
+                    <td className="timer-table-data">{session.name}</td>
+                    <td className="timer-table-data">
+                      <Tracker props={{ name: sessionName }} />
+                    </td>
+                    <td className="timer-table-data">
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDeleteSession(index)}
+                      >
+                        Delete session
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <ul className="tracker-block">
-        {sessions
-          .filter((session) => session.name)
-          .map((session, index) => (
-            <div key={session.id} className="row">
-              <li key={session.id} className="list-item">
-                {session.name}
-                <Tracker props={{ name: sessionName }} />
-              </li>
-              <button
-                className="delete-button"
-                onClick={() => handleDeleteSession(index)}
-              >
-                Delete session
-              </button>
-            </div>
-          ))}
-      </ul>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
 import * as ConfigStore from "../../../wailsjs/go/main/ConfigStore";
-import { loadHistory } from "../../utils/Config";
+import { saveHistory } from "../../utils/Config";
 
 interface Props {
   props: {
@@ -31,13 +31,11 @@ function Tracker({ props }: Props) {
   async function handleStopOnClick() {
     clearInterval(intervalId);
     setTimerState("stopped");
-    const historyData = await loadHistory();
     const historyToSave = {
       timer: time,
       name: props.name,
     };
-    const allHistory = [...JSON.parse(historyData), historyToSave];
-    await ConfigStore.Set("history.json", JSON.stringify(allHistory));
+    await saveHistory(historyToSave);
     setTime(moment().startOf("day").format("H:mm:ss"));
   }
 

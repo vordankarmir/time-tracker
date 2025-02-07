@@ -8,22 +8,26 @@ function History({ historyPromise }: any) {
   const fileData: any = use(historyPromise);
   return (
     <>
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Timer</th>
-          </tr>
-          {JSON.parse(fileData).map((d: any, index: number) => {
-            return (
-              <tr key={index}>
-                <td>{d.name}</td>
-                <td>{d.timer}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="table-container">
+        <table className="history-table">
+          <thead>
+            <tr>
+              <th className="history-column">Name</th>
+              <th className="history-column">Timer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {JSON.parse(fileData).map((d: any, index: number) => {
+              return (
+                <tr key={index} className="table-row">
+                  <td className="table-data">{d.name}</td>
+                  <td className="table-data">{d.timer}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

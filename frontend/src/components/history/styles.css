@@ -1,11 +1,47 @@
 .history-block {
-    position: relative;
-    float: left;
-    margin-left: 20px;
+  position: relative;
+  width: 100%;
 }
 
 .history-header {
-    position: relative;
-    float: left;
-    margin-left: 20px;
+  position: relative;
+  float: left;
+  margin-left: 20px;
+}
+
+.table-row {
+  position: relative;
+}
+
+.table-row:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.table-container {
+  position: relative;
+  padding: 20px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.history-column {
+  position: relative;
+  width: 50%;
+  text-align: left;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.table-data {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-align: left;
+  border-bottom: 1px groove rgba(255, 255, 255, 0.4);
 }

@@ -1,108 +1,105 @@
 .session-block {
-    position: relative;
-    float: left;
-    margin-left: 20px;
+  position: relative;
+  width: 100%;
 }
 
 .session-header {
-    position: relative;
-    float: left;
-    margin-left: 20px;
+  position: relative;
+  float: left;
+  margin-left: 20px;
 }
 
 .new-button {
-    position: relative;
-    border: 2px solid rgb(3, 32, 29);
-    border-radius: 0.2rem;
-    color: rgb(3, 32, 29);
-    text-align: center;
-    width: 80px;
-    line-height: 20px;
-    background: white;
-    text-decoration: none;
-    float: left;
-    margin-left: 20px;
-    top: 30px;
+  position: relative;
+  border: 2px solid rgb(3, 32, 29);
+  border-radius: 0.2rem;
+  color: rgb(3, 32, 29);
+  text-align: center;
+  width: 80px;
+  line-height: 20px;
+  background: white;
+  text-decoration: none;
+  float: left;
+  margin-left: 20px;
+  top: 30px;
 }
 
 .new-button:hover {
-    background-color: rgb(120, 224, 210);
-    -webkit-transition: 0.0s;
-    transition: 0s;
-    color:  rgb(3, 32, 29);
+  background-color: rgb(120, 224, 210);
+  -webkit-transition: 0s;
+  transition: 0s;
+  color: rgb(3, 32, 29);
 }
-  
+
 .new-button:active {
-    background-color: rgb(120, 224, 210);
+  background-color: rgb(120, 224, 210);
 }
 
 .input-block {
-    position: relative;
+  position: relative;
+  float: left;
+  width: 100%;
 }
 
 .session-input {
-    position: relative;
-    left: 10px;
-    width: 220px;
-    bottom: 10px;
-    border: 1px solid;
-    border-radius: 0.2rem;
-    outline: none;
-    line-height: 20px;
+  position: relative;
+  left: 20px;
+  width: 220px;
+  float: left;
+  bottom: 10px;
+  border: 1px solid;
+  border-radius: 0.2rem;
+  outline: none;
+  line-height: 20px;
 }
 
-
 .delete-button {
-    position: relative;
-    float: right;
-    bottom: 67px;
-    border: 1px solid rgb(3, 32, 29);
-    border-radius: 0.2rem;
-    color: rgb(3, 32, 29);
-    text-align: center;
-    width: 120px;
-    line-height: 20px;
-    background: rgb(255, 255, 255);
-    text-decoration: none;
+  position: relative;
+  float: right;
+  border: 1px solid rgb(3, 32, 29);
+  border-radius: 0.2rem;
+  color: rgb(3, 32, 29);
+  text-align: center;
+  width: 120px;
+  line-height: 20px;
+  background: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .delete-button:hover {
-    background-color: rgb(82, 158, 148);
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    color:  rgb(3, 32, 29);
+  background-color: rgb(82, 158, 148);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: rgb(3, 32, 29);
 }
-  
+
 .delete-button:active {
-    background-color: rgb(82, 158, 148);
+  background-color: rgb(82, 158, 148);
 }
 
-.tracker-block {
-    position: relative;
-    display: grid;
-    top: 30px;
-    width: 100%;
-    background-color: rgb(82, 158, 148);
-    padding: 0;
-    list-style-type: none;
+.timer-table-row {
+  border-bottom: 1px groove rgba(255, 255, 255, 0.4);
 }
 
-.list-item {
-    display: block;
-    text-align: left;
-    right: 220px;
+.timer-table-row:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.row {
-    display: block;
-    position: relative;
-    -webkit-transition: 0.2s;
-    transition: 0.2s;
-    margin-bottom: 3px;
-    list-style-position: inside;
-    border-bottom: 0.1rem solid rgb(17, 46, 43);
+.timers-table-container {
+  padding: 20px;
+  top: 100px;
 }
 
-.row:hover {
-    background-color:rgba(97, 178, 167, 1);
+.timers-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.timer-table-data {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-align: left;
 }
