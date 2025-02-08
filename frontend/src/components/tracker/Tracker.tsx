@@ -1,4 +1,4 @@
-import moment, { now } from "moment";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { saveHistory } from "../../utils/Config";
 
@@ -33,7 +33,7 @@ function Tracker({ props }: Props) {
     const historyToSave = {
       timer: time,
       name: props.name,
-      date: moment(now()).format("DD/MM/YYYY"),
+      date: moment(moment.now()).format("DD/MM/YYYY"),
     };
     await saveHistory(historyToSave);
     setTime(moment().startOf("day").format("H:mm:ss"));
