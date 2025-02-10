@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
 import { History, addToHistory } from "../../utils/Config";
+import "./style.css";
 
 interface Props {
   props: {
@@ -50,13 +51,13 @@ function Tracker({ props }: Props) {
   return (
     <>
       <div className="timer">{time}</div>
-      <button onClick={() => hanldeStartOnClick()}>
+      <button className="start-button" onClick={() => hanldeStartOnClick()}>
         <span>Start</span>
       </button>
-      <button onClick={() => handlePauseOnClick()}>
+      <button className="pause-button" onClick={() => handlePauseOnClick()}>
         <span>Pause</span>
       </button>
-      <button onClick={() => handleStopOnClick()}>
+      <button className="stop-button" onClick={() => handleStopOnClick()}>
         <span>Stop</span>
       </button>
     </>

@@ -14,12 +14,12 @@
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
-  width: 80px;
+  width: 70px;
   line-height: 30px;
   background: white;
   text-decoration: none;
   float: left;
-  margin-left: 20px;
+  margin-left: 28px;
   top: 30px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
@@ -47,12 +47,45 @@
   position: relative;
   left: 20px;
   width: 220px;
+  line-height: 30px;
   float: left;
   bottom: 10px;
-  border: 1px solid;
-  border-radius: 0.2rem;
+  border: 0;
   outline: none;
-  line-height: 20px;
+}
+
+.session-input:focus {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.clear-session-input-button {
+  position: relative;
+  border: 0;
+  color: rgb(3, 32, 29);
+  text-align: center;
+  width: 70px;
+  line-height: 30px;
+  bottom: 10px;
+  float: left;
+  background: white;
+  text-decoration: none;
+  margin-left: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.clear-session-input-button:hover {
+  background-color: rgb(228, 79, 79);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.clear-session-input-button:active {
+  background-color: rgb(255, 120, 120);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
 }
 
 .delete-session-button {
