@@ -45,6 +45,7 @@ function History({
                 <tr key={index} className="table-row">
                   <td className="table-data">
                     <input
+                      className="delete-checkbox"
                       key={d.id}
                       type="checkbox"
                       checked={d.checked}
@@ -90,6 +91,7 @@ function HistoryContainer() {
   const handleDeleteHistories = async () => {
     const uncheckedSessions = history.filter((h) => h.checked === false);
     await saveHistory(uncheckedSessions);
+    setHistory(uncheckedSessions);
   };
 
   return (

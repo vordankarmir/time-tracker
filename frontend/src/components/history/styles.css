@@ -112,3 +112,7 @@
   background-color: rgb(255, 120, 120);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
 }
+
+.delete-checkbox {
+  cursor: pointer;
+}
