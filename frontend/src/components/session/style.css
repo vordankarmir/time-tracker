@@ -11,28 +11,30 @@
 
 .new-button {
   position: relative;
-  border: 2px solid rgb(3, 32, 29);
-  border-radius: 0.2rem;
+  border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
   width: 80px;
-  line-height: 20px;
+  line-height: 30px;
   background: white;
   text-decoration: none;
   float: left;
   margin-left: 20px;
   top: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .new-button:hover {
   background-color: rgb(120, 224, 210);
-  -webkit-transition: 0s;
-  transition: 0s;
-  color: rgb(3, 32, 29);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .new-button:active {
-  background-color: rgb(120, 224, 210);
+  background-color: rgba(120, 224, 210, 0.2);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
 }
 
 .input-block {
@@ -53,28 +55,29 @@
   line-height: 20px;
 }
 
-.delete-button {
+.delete-session-button {
   position: relative;
   float: right;
-  border: 1px solid rgb(3, 32, 29);
-  border-radius: 0.2rem;
+  border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
   width: 120px;
-  line-height: 20px;
+  line-height: 30px;
   background: rgb(255, 255, 255);
   text-decoration: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-.delete-button:hover {
-  background-color: rgb(82, 158, 148);
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  color: rgb(3, 32, 29);
+.delete-session-button:hover {
+  background-color: rgb(228, 79, 79);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
-.delete-button:active {
-  background-color: rgb(82, 158, 148);
+.delete-session-button:active {
+  background-color: rgb(255, 120, 120);
 }
 
 .timer-table-row {

@@ -30,7 +30,16 @@
 
 .history-column {
   position: relative;
-  width: 33%;
+  width: 25%;
+  text-align: left;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.checkbox-column {
+  position: relative;
+  width: 1%;
   text-align: left;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.2);
@@ -47,26 +56,59 @@
 
 .refresh-button {
   position: relative;
-  border: 2px solid rgb(3, 32, 29);
-  border-radius: 0.2rem;
+  border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
   width: 150px;
-  line-height: 20px;
+  line-height: 30px;
   background: white;
   text-decoration: none;
   float: right;
   right: 20px;
   top: 30px;
+  margin-left: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .refresh-button:hover {
   background-color: rgb(120, 224, 210);
-  -webkit-transition: 0s;
-  transition: 0s;
-  color: rgb(3, 32, 29);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .refresh-button:active {
-  background-color: rgb(120, 224, 210);
+  background-color: rgba(160, 224, 216, 0.2);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+}
+
+.delete-history-button {
+  position: relative;
+  border: 0;
+  border-radius: 0;
+  color: rgb(3, 32, 29);
+  text-align: center;
+  width: 150px;
+  line-height: 30px;
+  background: white;
+  text-decoration: none;
+  float: right;
+  right: 20px;
+  top: 30px;
+  margin-right: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.delete-history-button:hover {
+  background-color: rgb(228, 79, 79);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.delete-history-button:active {
+  background-color: rgb(255, 120, 120);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
 }

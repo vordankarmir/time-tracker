@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import Tracker from "../tracker/Tracker";
+import { loadHistory } from "../../utils/Config";
 
 interface Session {
   id: number;
@@ -12,9 +13,16 @@ function Session() {
   const [sessionName, setSessionName] = useState("");
   const [sessions, setSessions] = useState<Session[]>([]);
 
-  const handleNewOnClick = () => {
+  const handleNewOnClick = async () => {
     setNewSession(true);
-    const id = (sessions[sessions.length - 1]?.id ?? 0) + 1;
+    let id: number;
+    if (sessions.length === 0) {
+      const data = await loadHistory();
+      const history = JSON.parse(data);
+      id = (history[history.length - 1]?.id ?? 0) + 1;
+    } else {
+      id = sessions[sessions.length - 1].id + 1;
+    }
     const newSession = {
       id,
       name: "",
@@ -68,11 +76,11 @@ function Session() {
                   <tr key={session.id} className="timer-table-row">
                     <td className="timer-table-data">{session.name}</td>
                     <td className="timer-table-data">
-                      <Tracker props={{ name: sessionName }} />
+                      <Tracker props={{ name: session.name, id: session.id }} />
                     </td>
                     <td className="timer-table-data">
                       <button
-                        className="delete-button"
+                        className="delete-session-button"
                         onClick={() => handleDeleteSession(index)}
                       >
                         Delete session

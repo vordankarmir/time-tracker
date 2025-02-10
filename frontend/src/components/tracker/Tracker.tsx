@@ -1,9 +1,10 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { saveHistory } from "../../utils/Config";
+import { History, addToHistory } from "../../utils/Config";
 
 interface Props {
   props: {
+    id: number;
     name: string;
   };
 }
@@ -30,12 +31,14 @@ function Tracker({ props }: Props) {
   async function handleStopOnClick() {
     clearInterval(intervalId);
     setTimerState("stopped");
-    const historyToSave = {
+    const historyToSave: History = {
+      id: props.id,
       timer: time,
       name: props.name,
       date: moment(moment.now()).format("DD/MM/YYYY"),
+      checked: false,
     };
-    await saveHistory(historyToSave);
+    await addToHistory([historyToSave]);
     setTime(moment().startOf("day").format("H:mm:ss"));
   }
 
