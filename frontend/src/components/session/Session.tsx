@@ -49,6 +49,13 @@ function Session() {
     setNewSession(false);
   };
 
+  const handleSubmitSession = () => {
+    setNewSession(false);
+    const currentSession = sessions[sessions.length - 1];
+    currentSession.name = sessionName;
+    setSessions(sessions);
+  };
+
   const handleClearSessionInput = () => {
     setNewSession(false);
     sessions.pop();
@@ -62,23 +69,31 @@ function Session() {
         <button className="new-button" onClick={() => handleNewOnClick()}>
           New
         </button>
+        {newSession ? (
+          <>
+            <button
+              className="submit-session-input-button"
+              onClick={() => handleSubmitSession()}
+            >
+              Submit
+            </button>
+            <button
+              className="clear-session-input-button"
+              onClick={() => handleClearSessionInput()}
+            >
+              Clear
+            </button>
+          </>
+        ) : null}
         <div className="input-block">
           {newSession ? (
-            <>
-              <input
-                className="session-input"
-                type="text"
-                placeholder="Name your session"
-                onChange={(ev) => handleSetSessionName(ev)}
-                onKeyDown={(ev) => handleOnKeyDown(ev)}
-              ></input>
-              <button
-                className="clear-session-input-button"
-                onClick={() => handleClearSessionInput()}
-              >
-                Clear
-              </button>
-            </>
+            <input
+              className="session-input"
+              type="text"
+              placeholder="Name your session"
+              onChange={(ev) => handleSetSessionName(ev)}
+              onKeyDown={(ev) => handleOnKeyDown(ev)}
+            ></input>
           ) : null}
         </div>
         <div className="timers-table-container">

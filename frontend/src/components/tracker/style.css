@@ -1,13 +1,18 @@
-.start-button {
+.timer {
   position: relative;
+  display: inline-block;
+  right: 30px;
+}
+
+.start-button {
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
-  width: 70px;
+  width: 120px;
   line-height: 30px;
   background: white;
   text-decoration: none;
-  margin-left: 5px;
+  margin-left: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -25,15 +30,14 @@
 }
 
 .pause-button {
-  position: relative;
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
-  width: 70px;
+  width: 120px;
   line-height: 30px;
   background: white;
   text-decoration: none;
-  margin-left: 5px;
+  margin-left: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -51,15 +55,14 @@
 }
 
 .stop-button {
-  position: relative;
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
-  width: 70px;
+  width: 120px;
   line-height: 30px;
   background: white;
   text-decoration: none;
-  margin-left: 5px;
+  margin-left: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 

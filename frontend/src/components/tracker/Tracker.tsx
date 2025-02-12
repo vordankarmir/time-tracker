@@ -50,16 +50,18 @@ function Tracker({ props }: Props) {
 
   return (
     <>
-      <div className="timer">{time}</div>
-      <button className="start-button" onClick={() => hanldeStartOnClick()}>
-        <span>Start</span>
-      </button>
-      <button className="pause-button" onClick={() => handlePauseOnClick()}>
-        <span>Pause</span>
-      </button>
-      <button className="stop-button" onClick={() => handleStopOnClick()}>
-        <span>Stop</span>
-      </button>
+      <div>
+        <span className="timer">{time}</span>
+        <button className="start-button" onClick={() => hanldeStartOnClick()}>
+          Start
+        </button>
+        <button className="pause-button" onClick={() => handlePauseOnClick()}>
+          Pause
+        </button>
+        <button className="stop-button" onClick={() => handleStopOnClick()}>
+          Stop
+        </button>
+      </div>
     </>
   );
 }
