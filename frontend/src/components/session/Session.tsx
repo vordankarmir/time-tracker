@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import "./style.css";
 import Tracker from "../tracker/Tracker";
 import { loadHistory } from "../../utils/Config";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import {
+  addSession,
+  deleteLatestSession,
+  deleteSession,
+  setSessions,
+  updateLatestSession,
+} from "../../store/session-slice";
 
 interface Session {
   id: number;
@@ -9,9 +17,10 @@ interface Session {
 }
 
 function Session() {
+  const dispatch = useAppDispatch();
   const [newSession, setNewSession] = useState(false);
   const [sessionName, setSessionName] = useState("");
-  const [sessions, setSessions] = useState<Session[]>([]);
+  const sessions = useAppSelector((state) => state.sessions.sessions);
 
   const handleNewOnClick = async () => {
     setNewSession(true);
@@ -28,15 +37,13 @@ function Session() {
       name: "",
       trackerIsOn: false,
     };
-    setSessions(sessions.concat(newSession));
+    dispatch(addSession(newSession));
   };
 
   const handleOnKeyDown = (ev: React.KeyboardEvent<HTMLInputElement>) => {
     if (ev.key === "Enter") {
       setNewSession(false);
-      const currentSession = sessions[sessions.length - 1];
-      currentSession.name = sessionName;
-      setSessions(sessions);
+      dispatch(updateLatestSession(sessionName));
     }
   };
 
@@ -45,21 +52,18 @@ function Session() {
   };
 
   const handleDeleteSession = (index: number) => {
-    setSessions(sessions.filter((s, i) => i !== index));
+    dispatch(deleteSession(index));
     setNewSession(false);
   };
 
   const handleSubmitSession = () => {
     setNewSession(false);
-    const currentSession = sessions[sessions.length - 1];
-    currentSession.name = sessionName;
-    setSessions(sessions);
+    dispatch(updateLatestSession(sessionName));
   };
 
   const handleClearSessionInput = () => {
     setNewSession(false);
-    sessions.pop();
-    setSessions(sessions);
+    dispatch(deleteLatestSession());
   };
 
   return (

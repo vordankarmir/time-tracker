@@ -5,6 +5,7 @@
 }
 
 .start-button {
+  position: relative;
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
@@ -30,6 +31,7 @@
 }
 
 .pause-button {
+  position: relative;
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
@@ -55,6 +57,7 @@
 }
 
 .stop-button {
+  position: relative;
   border: 0;
   color: rgb(3, 32, 29);
   text-align: center;
