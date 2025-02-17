@@ -7,7 +7,6 @@ import {
   addSession,
   deleteLatestSession,
   deleteSession,
-  setSessions,
   updateLatestSession,
 } from "../../store/session-slice";
 

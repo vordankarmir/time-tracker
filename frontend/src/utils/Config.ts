@@ -1,12 +1,5 @@
 import * as ConfigStore from "../../wailsjs/go/main/ConfigStore";
-
-export interface History {
-  id: number;
-  name: string;
-  timer: string;
-  date: string;
-  checked: boolean;
-}
+import { History } from "../store/history-slice";
 
 const fileName = "history.json";
 

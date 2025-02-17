@@ -1,6 +1,7 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { History, addToHistory } from "../../utils/Config";
+import { addToHistory } from "../../utils/Config";
+import { History as IHistory } from "../../store/history-slice";
 import "./style.css";
 
 interface Props {
@@ -32,7 +33,7 @@ function Tracker({ props }: Props) {
   async function handleStopOnClick() {
     clearInterval(intervalId);
     setTimerState("stopped");
-    const historyToSave: History = {
+    const historyToSave: IHistory = {
       id: props.id,
       timer: time,
       name: props.name,

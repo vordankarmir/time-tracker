@@ -14,7 +14,7 @@ const initialSessions: SessionsState = {
 };
 
 export const sessionsSlice = createSlice({
-  name: "sessionsSlice",
+  name: "sessions",
   initialState: initialSessions,
   reducers: {
     addSession: (state, action: PayloadAction<Session>) => {

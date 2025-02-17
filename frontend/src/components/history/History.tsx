@@ -1,29 +1,20 @@
 "use client";
-import { Suspense, useState, useEffect, useCallback } from "react";
+import { Suspense, useEffect, useCallback } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import "./styles.css";
-import {
-  loadHistory,
-  History as IHistory,
-  saveHistory,
-} from "../../utils/Config";
+import { loadHistory, saveHistory } from "../../utils/Config";
+import { changeCheckedStatus, setHistory } from "../../store/history-slice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
-function History({
-  history,
-  setHistory,
-}: {
-  history: IHistory[];
-  setHistory: any;
-}) {
+function History() {
+  const dispatch = useAppDispatch();
+  const history = useAppSelector((state) => state.history.history);
+
   const handleCheckBoxOnChange = async (
     ev: React.ChangeEvent<HTMLInputElement>,
     id: number
   ) => {
-    const currentSession = history.find((s) => s.id === id);
-    if (currentSession) {
-      currentSession.checked = ev.target.checked;
-      setHistory([...history.filter((h) => h.id !== id), currentSession]);
-    }
+    dispatch(changeCheckedStatus({ id, checked: ev.target.checked }));
   };
 
   return (
@@ -39,24 +30,22 @@ function History({
             </tr>
           </thead>
           <tbody>
-            {history
-              .sort((a, b) => b.id - a.id)
-              .map((d, index) => (
-                <tr key={index} className="table-row">
-                  <td className="table-data">
-                    <input
-                      className="delete-checkbox"
-                      key={d.id}
-                      type="checkbox"
-                      checked={d.checked}
-                      onChange={(ev) => handleCheckBoxOnChange(ev, d.id)}
-                    ></input>
-                  </td>
-                  <td className="table-data">{d.name}</td>
-                  <td className="table-data">{d.timer}</td>
-                  <td className="table-data">{d.date}</td>
-                </tr>
-              ))}
+            {history.map((d, index) => (
+              <tr key={index} className="table-row">
+                <td className="table-data">
+                  <input
+                    className="delete-checkbox"
+                    key={d.id}
+                    type="checkbox"
+                    checked={d.checked}
+                    onChange={(ev) => handleCheckBoxOnChange(ev, d.id)}
+                  ></input>
+                </td>
+                <td className="table-data">{d.name}</td>
+                <td className="table-data">{d.timer}</td>
+                <td className="table-data">{d.date}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -65,13 +54,14 @@ function History({
 }
 
 function HistoryContainer() {
-  const [history, setHistory] = useState<any[]>([]);
+  const dispatch = useAppDispatch();
+  const history = useAppSelector((state) => state.history.history);
 
   useEffect(() => {
     async function fetchHistory() {
       try {
         const data = await loadHistory();
-        setHistory(Array.isArray(data) ? data : JSON.parse(data));
+        dispatch(setHistory(Array.isArray(data) ? data : JSON.parse(data)));
       } catch (error) {
         console.error("Failed to load history:", error);
       }
@@ -82,7 +72,7 @@ function HistoryContainer() {
   const handleRefreshOnClick = useCallback(async () => {
     try {
       const data = await loadHistory();
-      setHistory(Array.isArray(data) ? data : JSON.parse(data));
+      dispatch(setHistory(Array.isArray(data) ? data : JSON.parse(data)));
     } catch (error) {
       console.error("Failed to refresh history:", error);
     }
@@ -91,7 +81,7 @@ function HistoryContainer() {
   const handleDeleteHistories = async () => {
     const uncheckedSessions = history.filter((h) => h.checked === false);
     await saveHistory(uncheckedSessions);
-    setHistory(uncheckedSessions);
+    dispatch(setHistory(uncheckedSessions));
   };
 
   return (
@@ -111,7 +101,7 @@ function HistoryContainer() {
         ) : null}
         <ErrorBoundary fallback={<p>⚠️ Something went wrong</p>}>
           <Suspense fallback={<p>⌛ Downloading history...</p>}>
-            <History history={history} setHistory={setHistory} />
+            <History />
           </Suspense>
         </ErrorBoundary>
       </div>
