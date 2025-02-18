@@ -3,6 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface Session {
   id: number;
   name: string;
+  time: string;
+}
+
+interface SessionTime {
+  id: number;
+  time: string;
 }
 
 interface SessionsState {
@@ -37,6 +43,12 @@ export const sessionsSlice = createSlice({
     deleteLatestSession: (state) => {
       state.sessions.pop();
     },
+    changeSessionTime: (state, action: PayloadAction<SessionTime>) => {
+      const session = state.sessions.find((s) => s.id === action.payload.id);
+      if (session) {
+        session.time = action.payload.time;
+      }
+    },
   },
 });
 
@@ -46,5 +58,6 @@ export const {
   updateLatestSession,
   deleteSession,
   deleteLatestSession,
+  changeSessionTime,
 } = sessionsSlice.actions;
 export const sessionsReducer = sessionsSlice.reducer;

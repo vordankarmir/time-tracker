@@ -3,7 +3,11 @@ import { Suspense, useEffect, useCallback } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import "./styles.css";
 import { loadHistory, saveHistory } from "../../utils/Config";
-import { changeCheckedStatus, setHistory } from "../../store/history-slice";
+import {
+  changeCheckedStatus,
+  setHistory,
+  History as IHistory,
+} from "../../store/history-slice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 
 function History() {
@@ -61,18 +65,32 @@ function HistoryContainer() {
     async function fetchHistory() {
       try {
         const data = await loadHistory();
-        dispatch(setHistory(Array.isArray(data) ? data : JSON.parse(data)));
+        const parsedHistory: IHistory[] = JSON.parse(data);
+        dispatch(
+          setHistory(
+            Array.isArray(data)
+              ? data
+              : parsedHistory.sort((a, b) => b.date - a.date)
+          )
+        );
       } catch (error) {
         console.error("Failed to load history:", error);
       }
     }
     fetchHistory();
-  }, []);
+  }, [dispatch]);
 
   const handleRefreshOnClick = useCallback(async () => {
     try {
       const data = await loadHistory();
-      dispatch(setHistory(Array.isArray(data) ? data : JSON.parse(data)));
+      const parsedHistory: IHistory[] = JSON.parse(data);
+      dispatch(
+        setHistory(
+          Array.isArray(data)
+            ? data
+            : parsedHistory.sort((a, b) => b.date - a.date)
+        )
+      );
     } catch (error) {
       console.error("Failed to refresh history:", error);
     }

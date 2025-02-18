@@ -1,25 +1,31 @@
 import moment from "moment";
 import { useState, useEffect } from "react";
-import { addToHistory } from "../../utils/Config";
-import { History as IHistory } from "../../store/history-slice";
 import "./style.css";
+import { changeSessionTime } from "../../store/session-slice";
+import { useAppDispatch } from "../../store/store";
 
 interface Props {
   props: {
     id: number;
-    name: string;
+    time: string;
   };
 }
 
 function Tracker({ props }: Props) {
-  const [time, setTime] = useState("00:00:00");
+  const dispatch = useAppDispatch();
   const [timerState, setTimerState] = useState("stopped");
   const [intervalId, setIntervalId] = useState(0);
+  const { id, time } = props;
 
   useEffect(() => {
     if (timerState === "running") {
       const intervalId = setInterval(() => {
-        setTime(moment(time, "H:mm:ss").add(1, "second").format("H:mm:ss"));
+        dispatch(
+          changeSessionTime({
+            id,
+            time: moment(time, "H:mm:ss").add(1, "second").format("H:mm:ss"),
+          })
+        );
       }, 1000);
       setIntervalId(intervalId);
     }
@@ -33,15 +39,6 @@ function Tracker({ props }: Props) {
   async function handleStopOnClick() {
     clearInterval(intervalId);
     setTimerState("stopped");
-    const historyToSave: IHistory = {
-      id: props.id,
-      timer: time,
-      name: props.name,
-      date: moment(moment.now()).format("DD/MM/YYYY"),
-      checked: false,
-    };
-    await addToHistory([historyToSave]);
-    setTime(moment().startOf("day").format("H:mm:ss"));
   }
 
   function handlePauseOnClick() {

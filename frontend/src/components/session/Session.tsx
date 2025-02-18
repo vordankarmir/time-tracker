@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import "./style.css";
 import Tracker from "../tracker/Tracker";
-import { loadHistory } from "../../utils/Config";
+import { addToHistoryFile, loadHistory } from "../../utils/Config";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import {
   addSession,
   deleteLatestSession,
   deleteSession,
   updateLatestSession,
+  Session as ISession,
 } from "../../store/session-slice";
-
-interface Session {
-  id: number;
-  name: string;
-}
+import { History as IHistory, addToHistory } from "../../store/history-slice";
+import moment from "moment";
 
 function Session() {
   const dispatch = useAppDispatch();
@@ -34,6 +32,7 @@ function Session() {
     const newSession = {
       id,
       name: "",
+      time: "00:00:00",
       trackerIsOn: false,
     };
     dispatch(addSession(newSession));
@@ -50,9 +49,18 @@ function Session() {
     setSessionName(ev.target.value);
   };
 
-  const handleDeleteSession = (index: number) => {
+  const handleDeleteSession = async (index: number, session: ISession) => {
     dispatch(deleteSession(index));
+    const historyToSave: IHistory = {
+      id: session.id,
+      timer: session.time,
+      name: session.name,
+      date: moment.now(),
+      checked: false,
+    };
+    dispatch(addToHistory(historyToSave));
     setNewSession(false);
+    await addToHistoryFile([historyToSave]);
   };
 
   const handleSubmitSession = () => {
@@ -108,12 +116,15 @@ function Session() {
                   <tr key={session.id} className="timer-table-row">
                     <td className="timer-table-data">{session.name}</td>
                     <td className="timer-table-data">
-                      <Tracker props={{ name: session.name, id: session.id }} />
+                      <Tracker
+                        key={session.id}
+                        props={{ id: session.id, time: session.time }}
+                      />
                     </td>
                     <td className="timer-table-data">
                       <button
                         className="delete-session-button"
-                        onClick={() => handleDeleteSession(index)}
+                        onClick={() => handleDeleteSession(index, session)}
                       >
                         Delete session
                       </button>

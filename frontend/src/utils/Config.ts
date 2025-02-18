@@ -7,7 +7,7 @@ export async function loadHistory() {
   return ConfigStore.Get(fileName, "[]");
 }
 
-export async function addToHistory(history: History[]) {
+export async function addToHistoryFile(history: History[]) {
   const historyData = await loadHistory();
   const allHistory = [...JSON.parse(historyData), ...history];
   await ConfigStore.Set(fileName, JSON.stringify(allHistory));

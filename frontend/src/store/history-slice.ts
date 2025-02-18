@@ -4,7 +4,7 @@ export interface History {
   id: number;
   name: string;
   timer: string;
-  date: string;
+  date: number;
   checked: boolean;
 }
 
@@ -27,9 +27,10 @@ export const historySlice = createSlice({
   reducers: {
     addToHistory: (state, action: PayloadAction<History>) => {
       state.history.push(action.payload);
+      state.history.sort((a, b) => b.id - a.id);
     },
     setHistory: (state, action: PayloadAction<History[]>) => {
-      state.history = action.payload.sort((a, b) => b.id - a.id);
+      state.history = action.payload;
     },
     changeCheckedStatus: (state, action: PayloadAction<CheckEvent>) => {
       const currentSession = state.history.find(
