@@ -36,7 +36,10 @@ function History() {
           </thead>
           <tbody>
             {history.map((d, index) => (
-              <tr key={index} className="table-row">
+              <tr
+                key={index}
+                className={d.checked ? "table-row-checked" : "table-row"}
+              >
                 <td className="table-data">
                   <input
                     className="delete-checkbox"
