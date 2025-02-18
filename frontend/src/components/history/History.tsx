@@ -9,6 +9,7 @@ import {
   History as IHistory,
 } from "../../store/history-slice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
+import moment from "moment";
 
 function History() {
   const dispatch = useAppDispatch();
@@ -47,7 +48,9 @@ function History() {
                 </td>
                 <td className="table-data">{d.name}</td>
                 <td className="table-data">{d.timer}</td>
-                <td className="table-data">{d.date}</td>
+                <td className="table-data">
+                  {moment(d.date).format("hh:mm:ss - MM/DD/YYYY")}
+                </td>
               </tr>
             ))}
           </tbody>

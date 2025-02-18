@@ -16,3 +16,9 @@ export async function addToHistoryFile(history: History[]) {
 export async function saveHistory(history: History[]) {
   await ConfigStore.Set(fileName, JSON.stringify(history));
 }
+
+export async function getSortedHistory() {
+  const data = await loadHistory();
+  const history: History[] = JSON.parse(data);
+  return history.sort((a, b) => a.id - b.id);
+}

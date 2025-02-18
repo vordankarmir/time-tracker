@@ -27,7 +27,7 @@ export const historySlice = createSlice({
   reducers: {
     addToHistory: (state, action: PayloadAction<History>) => {
       state.history.push(action.payload);
-      state.history.sort((a, b) => b.id - a.id);
+      state.history.sort((a, b) => b.date - a.date);
     },
     setHistory: (state, action: PayloadAction<History[]>) => {
       state.history = action.payload;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import Tracker from "../tracker/Tracker";
-import { addToHistoryFile, loadHistory } from "../../utils/Config";
+import { addToHistoryFile, getSortedHistory } from "../../utils/Config";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import {
   addSession,
@@ -23,8 +23,7 @@ function Session() {
     setNewSession(true);
     let id: number;
     if (sessions.length === 0) {
-      const data = await loadHistory();
-      const history = JSON.parse(data);
+      const history = await getSortedHistory();
       id = (history[history.length - 1]?.id ?? 0) + 1;
     } else {
       id = sessions[sessions.length - 1].id + 1;

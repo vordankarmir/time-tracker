@@ -15,7 +15,7 @@ function Tracker({ props }: Props) {
   const dispatch = useAppDispatch();
   const [timerState, setTimerState] = useState("stopped");
   const [intervalId, setIntervalId] = useState(0);
-  const { id, time } = props;
+  let { id, time } = props;
 
   useEffect(() => {
     if (timerState === "running") {
@@ -50,12 +50,15 @@ function Tracker({ props }: Props) {
     <>
       <div>
         <span className="timer">{time}</span>
-        <button className="start-button" onClick={() => hanldeStartOnClick()}>
-          Start
-        </button>
-        <button className="pause-button" onClick={() => handlePauseOnClick()}>
-          Pause
-        </button>
+        {timerState === "stopped" ? (
+          <button className="start-button" onClick={() => hanldeStartOnClick()}>
+            Start
+          </button>
+        ) : (
+          <button className="pause-button" onClick={() => handlePauseOnClick()}>
+            Pause
+          </button>
+        )}
         <button className="stop-button" onClick={() => handleStopOnClick()}>
           Stop
         </button>
